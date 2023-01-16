@@ -1,6 +1,6 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Books() {
   const [books, setBooks] = React.useState([])
@@ -8,7 +8,7 @@ export default function Books() {
   const fetchBooks = async () => {
     try {
       const books = await axios.get('http://localhost:5000/books')
-      console.log({ books })
+      // console.log({ books })
       setBooks(books.data)
     } catch (error) {
 
@@ -16,10 +16,10 @@ export default function Books() {
   }
   // fetch book first time
   useEffect(() => {
-
     fetchBooks()
   }, [])
-  // delete bok function
+
+  // delete book, function
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/books/${id}`)
@@ -42,25 +42,31 @@ export default function Books() {
     }
   }
 
-  return (
-    <div>
-      <h1>Book List</h1>
+  return (<div className="container">
+      <h1 className='heading'>Book List</h1>
 
+    <div className="books">
+      <div className="books"></div>
       {books.map((book, index) => {
-        return <div key={index}>
+        return <div key={index} className='book'>
           {book.cover && <img src={book.cover} alt={book.title} />}
           <h2>{book.title}</h2>
           <p>{book.descr}</p>
           <span>{book.price ? book.price : <p>price</p>}</span>
           <div>
-            <button onClick={() => handleDelete(book.id)}>delete</button>
-            <button><Link to={`/update/${book.id}`}>update</Link></button>
+            <button className="delete-btn btn"onClick={() => handleDelete(book.id)}>delete</button>
+            <button className="update-btn btn"><Link to={`/update/${book.id}`}>update</Link></button>
           </div>
         </div>
       })
       }
-      <button><Link to='/add'>add new book</Link></button>
-      <button onClick={deleteAll}>delete all books</button>
+
+    </div>
+     <div className="buttons">
+     <button className="add-new-book btn"><Link to='/add'>add new book</Link></button>
+      <button className="delete-all btn" onClick={deleteAll}>delete all books</button>
+    
+     </div>
     </div>
   )
 }

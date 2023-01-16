@@ -9,12 +9,15 @@ function Add() {
     price:'',
     cover:''
   })
+  // navigate to go to homepage again after adding new book
   const navigate = useNavigate()
+  // set book state
   const handelChange=(e)=>{
     const {name,value}=e.target
     setBook({...book,[name]:value})
     console.log(book)
   }
+  // post book to server
   const handelClick=async (e)=>{
     e.preventDefault()
    try {
@@ -22,8 +25,7 @@ function Add() {
     navigate('/')
    } catch (error) {
     console.log(error.message)
-   }
-    
+   }    
   }
 
 

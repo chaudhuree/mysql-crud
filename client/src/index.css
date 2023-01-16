@@ -1,0 +1,79 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100vh;
+}
+.books {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.book {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  box-shadow: 7px 4px 32px 3px rgba(0, 0, 0, 0.37);
+  -webkit-box-shadow: 7px 4px 32px 3px rgba(0, 0, 0, 0.37);
+  -moz-box-shadow: 7px 4px 32px 3px rgba(0, 0, 0, 0.37);
+  /* background: palegreen; */
+}
+.book img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.heading {
+  margin: auto;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 5px;
+  font-weight: bold;
+}
+.btn > a {
+  text-decoration: none;
+  color: white !important;
+}
+.delete-btn {
+  background: #ff0000;
+  color: #fff;
+}
+.delete-btn:hover {
+  background: #ff4d4d;
+}
+.update-btn {
+  background: #00b300;
+}
+.update-btn:hover {
+  background: #00e600;
+}
+.add-new-book {
+  background: #0247f4ec;
+}
+
+.delete-all {
+  background: #ff6200;
+  color: #fff;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}

@@ -4,8 +4,10 @@ const cors = require('cors');
 const app = express();
 const port = 5000;
 
+// middleware
 app.use(cors());
 app.use(express.json());
+// connect to mysql
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -13,8 +15,9 @@ const db = mysql.createConnection({
   database: 'nodebooklist'
 });
 
+// connection check
 app.get('/', (req, res) => {
-  res.send('this is backend')
+  res.send('connected to backend')
 })
 
 // get all books
@@ -48,7 +51,6 @@ app.delete('/books/:id', (req, res) => {
     res.status(200).json({ "status": 'success', "message": "book is deleted" });
   })
 })
-
 
 
 // update book
