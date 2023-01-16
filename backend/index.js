@@ -37,4 +37,14 @@ app.post('/books', (req, res)=>{
   })
 })
 
+// delete book
+app.delete('/books/:id', (req, res)=>{
+  const {id} = req.params;
+  const query = 'DELETE FROM books WHERE id=?';
+  db.query(query, [id], (err, result)=>{
+    if(err) throw err;
+    res.status(200).json({"status":'success', "message":"book is deleted"});
+  })
+})
+
 app.listen(port, () => {console.log(`app listening on port ${port}`)});

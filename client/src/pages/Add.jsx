@@ -15,10 +15,10 @@ function Add() {
     setBook({...book,[name]:value})
     console.log(book)
   }
-  const handelClick=(e)=>{
+  const handelClick=async (e)=>{
     e.preventDefault()
    try {
-    axios.post('http://localhost:5000/books',book)
+    await axios.post('http://localhost:5000/books',book)
     navigate('/')
    } catch (error) {
     console.log(error.message)
