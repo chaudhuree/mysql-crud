@@ -31,6 +31,17 @@ export default function Books() {
     }
   }
 
+  // delete all books function
+  const deleteAll = async () => {
+    try {
+
+      await axios.delete('http://localhost:5000/alldelete')
+      setBooks([])
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   return (
     <div>
       <h1>Book List</h1>
@@ -43,12 +54,13 @@ export default function Books() {
           <span>{book.price ? book.price : <p>price</p>}</span>
           <div>
             <button onClick={() => handleDelete(book.id)}>delete</button>
-            {/* <button><Link to={`/update/${book.id}`}>update</Link></button> */}
+            <button><Link to={`/update/${book.id}`}>update</Link></button>
           </div>
         </div>
       })
       }
       <button><Link to='/add'>add new book</Link></button>
+      <button onClick={deleteAll}>delete all books</button>
     </div>
   )
 }
