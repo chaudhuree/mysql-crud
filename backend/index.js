@@ -14,11 +14,22 @@ app.get('/', (req, res)=>{
     res.send('this is backend')
 })
 
+// get all books
 app.get('/books', (req, res)=>{
   const query = 'SELECT * FROM books';
   db.query(query, (err, result)=>{
     if(err) throw err;
-    res.json(result);
+    res.status(200).json(result);
+  })
+})
+
+// create book
+app.post('/books', (req, res)=>{
+  const query = 'INSERT INTO books (`title`,`descr`,`cover`) VALUES (?)';
+  const values = ['book two', 'some more desc', 'image two'];
+  db.query(query, [values], (err, result)=>{
+    if(err) throw err;
+    res.status(201).json(result);
   })
 })
 
