@@ -1,8 +1,10 @@
 const express = require('express');
 const mysql= require('mysql');
+const cors = require('cors');
 const app = express();
 const port = 5000;
 
+app.use(cors());
 app.use(express.json());
 const db=mysql.createConnection({
     host: 'localhost',
@@ -26,9 +28,9 @@ app.get('/books', (req, res)=>{
 
 // create book
 app.post('/books', (req, res)=>{
-  const {title, descr, cover} = req.body;
-  const query = 'INSERT INTO books (`title`,`descr`,`cover`) VALUES (?)';
-  const values = [title, descr, cover];
+  const {title, descr, cover,price} = req.body;
+  const query = 'INSERT INTO books (`title`,`descr`,`cover`,`price`) VALUES (?)';
+  const values = [title, descr, cover,price];
   db.query(query, [values], (err, result)=>{
     if(err) throw err;
     res.status(201).json({"status":'success', "message":"book is created"});
